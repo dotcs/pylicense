@@ -1,4 +1,5 @@
 import argparse
+import sys
 
 
 def configure_parser():
@@ -15,7 +16,11 @@ package per line.
     parser.add_argument("-v", "--verbose", dest="verbosity", action="count", default=0)
 
     parser.add_argument(
-        "inputfile", help="Input file in the form of a requirements.txt file"
+        "inputfile",
+        nargs="?",
+        default=None if sys.stdin.isatty() else sys.stdin,
+        type=argparse.FileType("r"),
+        help="Input file in the form of a requirements.txt file",
     )
     parser.add_argument(
         "-r",
@@ -27,7 +32,7 @@ package per line.
     parser.add_argument(
         "--output-format",
         default="markdown",
-        choices=["csv", "markdown"],
+        choices=["csv", "markdown", "json"],
         help="Output format of the resulting table",
     )
 

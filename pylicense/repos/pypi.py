@@ -2,8 +2,9 @@ import requests
 
 from . import BaseRepoParser
 
+
 class PyPIRepoParser(BaseRepoParser):
-    _base_url = 'https://pypi.org/pypi/{pkg}/json'
+    _base_url = "https://pypi.org/pypi/{pkg}/json"
 
     def _fetch_single(self, pkg: str):
         url = self._base_url.format(pkg=pkg)
@@ -11,15 +12,16 @@ class PyPIRepoParser(BaseRepoParser):
 
         try:
             content = r.json()
-            license = content['info']['license']
-            version = content['info']['version']
+            license = content["info"]["license"]
+            if len(license) == 0:
+                license = "unknown"
+            version = content["info"]["version"]
         except:
-            license = 'unknown'
-            version = 'unknown'
+            license = "unknown"
+            version = "unknown"
 
         return {
-            'name': pkg,
-            'license': license,
-            'version': version,
+            "name": pkg,
+            "license": license,
+            "version": version,
         }
-
