@@ -14,7 +14,10 @@ setuptools.setup(
     version="0.0.2",
     author="Fabian Mueller",
     author_email="repository@dotcs.me",
-    description="",
+    description=(
+        "PyLicense is a CLI tool that queries license information from one of "
+        "the following package repositories: PyPI, Anaconda or conda-forge."
+    ),
     license="GPLv3",
     long_description=long_description,
     long_description_content_type="text/markdown",
