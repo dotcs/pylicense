@@ -25,7 +25,13 @@ class BaseRepoParser(object):
     def _read_from_file(self, filepath: str):
         with open(filepath, "r") as f:
             lines = f.read().split("\n")
+        return self._postprocess_lines(lines)
 
+    def _read_from_io(self, io):
+        lines = io.read().split("\n")
+        return self._postprocess_lines(lines)
+
+    def _postprocess_lines(self, lines: List[str]):
         pkgs = []
         for line in lines:
             matches = self._match_input_line(line)
@@ -36,6 +42,11 @@ class BaseRepoParser(object):
 
     def from_file(self, filepath: str):
         pkgs = self._read_from_file(filepath)
+        pkgs_info = self._fetch(pkgs)
+        return pkgs_info
+
+    def from_io(self, io):
+        pkgs = self._read_from_io(io)
         pkgs_info = self._fetch(pkgs)
         return pkgs_info
 
