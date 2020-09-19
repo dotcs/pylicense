@@ -35,5 +35,13 @@ package per line.
         choices=["csv", "markdown", "json"],
         help="Output format of the resulting table",
     )
+    parser.add_argument(
+        "--csv-separator",
+        default="|",
+        help=(
+            "Defines which character to use to separate entries in the CSV."
+            "Only relevant if --output-format is set to 'csv'."
+        ),
+    )
 
     return parser

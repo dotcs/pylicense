@@ -16,7 +16,7 @@ def dispatch(parser: ArgumentParser, cli_args: Namespace):
 
     pkgs_info = r_parser.from_io(cli_args.inputfile)
     if cli_args.output_format == "csv":
-        print(r_parser.as_csv(pkgs_info))
+        print(r_parser.as_csv(pkgs_info, separator=cli_args.csv_separator))
     elif cli_args.output_format == "markdown":
         print(r_parser.as_markdown(pkgs_info))
     elif cli_args.output_format == "json":
