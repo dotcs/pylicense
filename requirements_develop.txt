@@ -2,3 +2,4 @@ black
 pylint
 pytest
 sphinx>=3.2.1,<4
+twine
