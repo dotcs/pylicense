@@ -1,0 +1,9 @@
+[run]
+branch = True
+
+source =
+    pylicense/
+
+[report]
+omit =
+    pylicense/tests/*
