@@ -43,6 +43,11 @@ $ pylicense path/to/my/requirements.txt
 | twine      | unknown   | 3.2.1     |
 ```
 
+It is also possible to read from stdin
+```console
+$ cat /path/to/my/requirements.txt | pylicense
+```
+
 By default the result is returned as a markdown table.
 Other format options are available, e.g. output formatting as CSV.
 
