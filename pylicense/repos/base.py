@@ -1,6 +1,7 @@
-from typing import Union, List, Dict
+from typing import Union, List, Dict, Optional
 import re
 import pandas as pd
+import json
 
 
 class BaseRepoParser(object):
@@ -57,3 +58,6 @@ class BaseRepoParser(object):
     def as_markdown(self, pkgs_info: List[Dict]):
         df = pd.DataFrame.from_dict(pkgs_info)
         return df.to_markdown(index=False)
+
+    def as_json(self, pkgs_info: List[Dict], indent: Optional[int] = None):
+        return json.dumps(pkgs_info, indent=indent)

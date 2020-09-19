@@ -32,7 +32,7 @@ package per line.
     parser.add_argument(
         "--output-format",
         default="markdown",
-        choices=["csv", "markdown"],
+        choices=["csv", "markdown", "json"],
         help="Output format of the resulting table",
     )
 
