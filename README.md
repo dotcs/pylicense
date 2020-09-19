@@ -43,6 +43,11 @@ $ pylicense path/to/my/requirements.txt
 | twine      | unknown   | 3.2.1     |
 ```
 
+It is also possible to read from stdin
+```console
+$ cat /path/to/my/requirements.txt | pylicense
+```
+
 By default the result is returned as a markdown table.
 Other format options are available, e.g. output formatting as CSV.
 
@@ -60,7 +65,7 @@ twine|unknown|3.2.1
 By default the [Python Package Index (PyPI)](https://pypi.org) is queried.
 This can be changed with the `--repository` flag.
 
-To for example query the anaconda package repository use the following command
+For example to query the anaconda package repository use the following command
 
 ```console
 $ pylicense --repository anaconda path/to/my/requirements.txt

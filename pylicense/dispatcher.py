@@ -3,6 +3,10 @@ import pylicense.repos as repos
 
 
 def dispatch(parser: ArgumentParser, cli_args: Namespace):
+    if cli_args.inputfile is None:
+        parser.print_help()
+        exit(1)
+
     if cli_args.repository == "pypi":
         r_parser = repos.PyPIRepoParser()
     elif cli_args.repository == "anaconda":
@@ -10,7 +14,7 @@ def dispatch(parser: ArgumentParser, cli_args: Namespace):
     elif cli_args.repository == "conda-forge":
         r_parser = repos.CondaForgeRepoParser()
 
-    pkgs_info = r_parser.from_file(cli_args.inputfile)
+    pkgs_info = r_parser.from_io(cli_args.inputfile)
     if cli_args.output_format == "csv":
         print(r_parser.as_csv(pkgs_info))
     elif cli_args.output_format == "markdown":
