@@ -3,6 +3,7 @@ from pylicense.parser import configure_parser
 from pylicense.logger import configure_logger
 import pylicense.constants as pc
 
+
 def run():
     logger = configure_logger()
     parser = configure_parser()

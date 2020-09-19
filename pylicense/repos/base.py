@@ -1,38 +1,45 @@
-from typing import Union, List, Dict, Optional
+from typing import Union, List, Dict, Optional, TypedDict
 import re
 import pandas as pd
 import json
+from io import StringIO
+
+
+class PackageInfo(TypedDict):
+    name: str
+    license: str
+    version: str
 
 
 class BaseRepoParser(object):
     _base_url: str = ""
     _line_regex = re.compile(r"^([A-Za-z0-9\-\_]+)")
 
-    def _fetch_single(self, pkg: str):
+    def _fetch_single(self, pkg: str) -> PackageInfo:
         raise NotImplementedError()
 
-    def _fetch_multiple(self, pkgs: List[str]):
+    def _fetch_multiple(self, pkgs: List[str]) -> List[PackageInfo]:
         return [self._fetch_single(pkg) for pkg in pkgs]
 
-    def _fetch(self, pkgs: Union[str, List[str]]):
+    def _fetch(self, pkgs: Union[str, List[str]]) -> List[PackageInfo]:
         if type(pkgs) == str:
-            return self._fetch_single(pkgs)
+            return [self._fetch_single(pkgs)]
         else:
             return self._fetch_multiple(pkgs)
 
     def _match_input_line(self, line):
         return self._line_regex.match(line)
 
-    def _read_from_file(self, filepath: str):
+    def _read_from_file(self, filepath: str) -> List[str]:
         with open(filepath, "r") as f:
             lines = f.read().split("\n")
         return self._postprocess_lines(lines)
 
-    def _read_from_io(self, io):
+    def _read_from_io(self, io: StringIO) -> List[str]:
         lines = io.read().split("\n")
         return self._postprocess_lines(lines)
 
-    def _postprocess_lines(self, lines: List[str]):
+    def _postprocess_lines(self, lines: List[str]) -> List[str]:
         pkgs = []
         for line in lines:
             matches = self._match_input_line(line)
@@ -46,7 +53,7 @@ class BaseRepoParser(object):
         pkgs_info = self._fetch(pkgs)
         return pkgs_info
 
-    def from_io(self, io):
+    def from_io(self, io: StringIO):
         pkgs = self._read_from_io(io)
         pkgs_info = self._fetch(pkgs)
         return pkgs_info

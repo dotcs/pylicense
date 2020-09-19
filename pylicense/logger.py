@@ -3,6 +3,7 @@ import sys
 
 import pylicense.constants as pc
 
+
 def configure_logger() -> logging.Logger:
     logger = logging.getLogger(pc.DEFAULT_LOGGER_NAME)
     handler = logging.StreamHandler(sys.stdout)

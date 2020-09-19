@@ -1,12 +1,12 @@
 import requests
 
-from . import BaseRepoParser
+from .base import BaseRepoParser, PackageInfo
 
 
 class PyPIRepoParser(BaseRepoParser):
     _base_url = "https://pypi.org/pypi/{pkg}/json"
 
-    def _fetch_single(self, pkg: str):
+    def _fetch_single(self, pkg: str) -> PackageInfo:
         url = self._base_url.format(pkg=pkg)
         r = requests.get(url)
 
@@ -20,8 +20,4 @@ class PyPIRepoParser(BaseRepoParser):
             license = "unknown"
             version = "unknown"
 
-        return {
-            "name": pkg,
-            "license": license,
-            "version": version,
-        }
+        return {"name": pkg, "license": license, "version": version}
