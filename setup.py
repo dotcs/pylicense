@@ -11,7 +11,7 @@ with open("requirements_develop.txt", "r") as fh:
 
 setuptools.setup(
     name="dcs-pylicense",
-    version="0.0.1",
+    version="0.0.2",
     author="Fabian Mueller",
     author_email="repository@dotcs.me",
     description="",
@@ -34,5 +34,9 @@ setuptools.setup(
     python_requires=">=3.6",
     install_requires=requirements,
     extras_require={"develop": requirements_develop},
-    entry_points={"console_scripts": ["pylicense=pylicense.cli:run",]},
+    entry_points={
+        "console_scripts": [
+            "pylicense=pylicense.cli:run",
+        ]
+    },
 )
