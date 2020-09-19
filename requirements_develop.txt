@@ -1,0 +1,6 @@
+black
+pylint
+pytest
+pytest-cov
+sphinx>=3.2.1,<4
+twine
