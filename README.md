@@ -65,7 +65,7 @@ twine|unknown|3.2.1
 By default the [Python Package Index (PyPI)](https://pypi.org) is queried.
 This can be changed with the `--repository` flag.
 
-To for example query the anaconda package repository use the following command
+For example to query the anaconda package repository use the following command
 
 ```console
 $ pylicense --repository anaconda path/to/my/requirements.txt
