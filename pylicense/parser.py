@@ -20,7 +20,7 @@ package per line.
         nargs="?",
         default=None if sys.stdin.isatty() else sys.stdin,
         type=argparse.FileType("r"),
-        help="Input file in the form of a requirements.txt file",
+        help="Input file in the form of a requirements.txt file or stdin.",
     )
     parser.add_argument(
         "-r",
@@ -39,7 +39,7 @@ package per line.
         "--csv-separator",
         default="|",
         help=(
-            "Defines which character to use to separate entries in the CSV."
+            "Defines which character to use to separate entries in the CSV. "
             "Only relevant if --output-format is set to 'csv'."
         ),
     )
